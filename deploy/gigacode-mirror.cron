@@ -1,0 +1,12 @@
+# gigacode-mirror.cron — STAGED, IKKE installeret.
+# KANARIE=GIGACODE-INGEST-20261105
+#
+# Denne linje installeres KUN med Tommys eksplicitte GO (S4/S5: ingen cron uden ordre).
+# Den spejler code__gigacode__main fra hus-Qdrant :16343 (skrive-sandhed) til læse-spejlet :16333.
+# 5-min kadence: sha-gaten giver status=unchanged på ~0.01 s naar commit_sha er uændret.
+# Log: /tmp/gigakode-mirror.log (kanarie GIGACODE-INGEST-20261105 i hver linje).
+#
+# Installation (kun efter GO):
+#   crontab -l > /tmp/crontab.bak-pre-gigakode-mirror-$(date +%Y%m%d-%H%M)
+#   (crontab -l; echo '<linjen nedenfor>') | crontab -
+*/5 * * * * /shared/claude-shared/director-v3/sandbox/gigacode-ingest-20261105/bin/gigacode-mirror.sh >> /tmp/gigakode-mirror.log 2>&1

@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "comment": "KANARIE=GIGACODE-INGEST-20261105. SEPARAT registry for repoet gigacode (ny, ikke-GitHub post). Struktur = etc/repos-b1.json (version/comment/qdrant_url/embed_url/embed_model/vector_size/b1/repos). Denne fil roerer IKKE repos-b1.json; gigakode.py laeser den som andet --registry-led (load_registry :85-96, foerste definition af et navn vinder). Posten har INGEN 'github'-noegle, fordi der ikke findes et GitHub-repo tommttommy/gigacode (API: Not Found, 31 repos gennemgaaet, 0 match) - en GitHub-post ville kraeve et eksisterende repo + b1-klon. KLONROD ER EN PLACEHOLDER: /home/tlg/code-rag-clones/gigacode findes IKKE paa disk endnu (verificeret 2026-11-05); stien skal bekraeftes af Tommy, naar repoet er oprettet. Indtil da rapporterer run_repo status=skipped med reason 'root mangler paa disk (klon ikke synket endnu)' og skriver intet til Qdrant.",
+  "qdrant_url": "http://127.0.0.1:16343",
+  "embed_url": "http://127.0.0.1:4000/v1/embeddings",
+  "embed_model": "embed-qwen3",
+  "vector_size": 2560,
+  "b1": {
+    "canary": "GIGACODE-INGEST-20261105",
+    "clones_root": "/home/tlg/code-rag-clones",
+    "targets": {
+      "hus": {
+        "qdrant_url": "http://127.0.0.1:16343",
+        "collection_prefix": "gigakode",
+        "forbidden_ports": [
+          6333,
+          6340
+        ]
+      }
+    }
+  },
+  "repos": [
+    {
+      "name": "gigacode",
+      "root": "/home/tlg/code-rag-clones/gigacode",
+      "git_root": "/home/tlg/code-rag-clones/gigacode",
+      "branch": "main",
+      "branch_from_git": true,
+      "enabled": true,
+      "no_hooks": true,
+      "test": false,
+      "repo_display": "gigacode",
+      "tier": "small",
+      "tier_basis": "ny lokal post: klonrod er placeholder (/home/tlg/code-rag-clones/gigacode findes ikke endnu) - tier bekraeftes ved foerste maalte sync",
+      "scan_gate": "warn",
+      "exclude": [],
+      "qdrant_url": "http://127.0.0.1:16343",
+      "b1_target": "hus",
+      "gigakode_kilde": "hus"
+    }
+  ]
+}

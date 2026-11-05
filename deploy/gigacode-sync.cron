@@ -1,0 +1,7 @@
+# gigacode-sync.cron — KANARIE=GIGACODE-INGEST-20261105
+# STAGED — installeres KUN med Tommy-GO. Denne fil er ikke installeret i crontab og kaldes ikke af noget.
+# 5-minutters kadence fordi gigakode er inkrementel: sha-gaten (gigakode.py:run_repo) returnerer
+# status=unchanged paa ca. 0.01 s naar commit_sha + entry_fingerprint + mask_fp er uaendret.
+# Overlappende start er ufarlig: flock -n paa /tmp/gigakode-locks/<collection>.lock -> exit 0.
+# Log til lokal disk (ikke NFS). Roter med b1-logrotate-moenstret, hvis den tages i brug.
+*/5 * * * * /shared/claude-shared/director-v3/sandbox/gigacode-ingest-20261105/bin/gigacode-sync.sh >> /tmp/gigakode-cron.log 2>&1
